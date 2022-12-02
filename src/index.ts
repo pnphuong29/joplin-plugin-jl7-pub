@@ -21,7 +21,7 @@ joplin.plugins.register({
 
         await joplin.commands.register({
             name: 'deleteNotesAndAssociatedAttachmentsWithoutConfirmation',
-            label: 'Force delete notes & all associated attachments',
+            label: 'Force delete notes and all associated attachments',
             execute: async (noteIds: string[]) => {
                 // If this command is triggered from menu <Tools> then noteIds will be null
                 // So we need to get all selected note ids in current workspace as below
