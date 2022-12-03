@@ -44,6 +44,14 @@ joplin.plugins.register({
             },
         });
 
+        await joplin.commands.register({
+            name: 'deleteFolderAndChildNotesWithoutConfirmation',
+            label: 'Force delete folder, its child notes and all associated attachments',
+            execute: async (folderId: string) => {
+                await joplin.data.delete(['folders', folderId]);
+            },
+        });
+
         await joplin.views.menuItems.create(
             'ToolsDeleteNotes',
             'deleteNotesWithoutConfirmation',
@@ -70,6 +78,20 @@ joplin.plugins.register({
             'deleteNotesAndAssociatedAttachmentsWithoutConfirmation',
             MenuItemLocation.NoteListContextMenu,
             { accelerator: 'CmdOrCtrl+Alt+D' }
+        );
+
+        await joplin.views.menuItems.create(
+            'ToolsDeleteFolderAndChildNotes',
+            'deleteFolderAndChildNotesWithoutConfirmation',
+            MenuItemLocation.Tools,
+            { accelerator: 'Ctrl+Shift+D' }
+        );
+
+        await joplin.views.menuItems.create(
+            'noteListMenuItemDeleteFolderAndChildNotes',
+            'deleteFolderAndChildNotesWithoutConfirmation',
+            MenuItemLocation.FolderContextMenu,
+            { accelerator: 'Ctrl+Shift+D' }
         );
     },
 });
