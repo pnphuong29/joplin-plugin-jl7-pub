@@ -46,9 +46,15 @@ joplin.plugins.register({
 
         await joplin.commands.register({
             name: 'deleteFolderAndChildNotesWithoutConfirmation',
-            label: 'Force delete folder, its child notes and all associated attachments',
+            label: 'Force delete folder and child notes',
             execute: async (folderId: string) => {
-                await joplin.data.delete(['folders', folderId]);
+                // If this command is triggered from menu <Tools> then folderId will be null
+                // So we need to get selected folder id in current workspace as below
+                if (!folderId) {
+                    folderId = (await joplin.workspace.selectedFolder()).id;
+                }
+                
+				await joplin.data.delete(['folders', folderId]);
             },
         });
 
