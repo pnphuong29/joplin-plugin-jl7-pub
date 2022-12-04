@@ -4,7 +4,7 @@ This plugin allows you to remove folder and all of selected notes without confir
 
 You can also choose to remove all associated attachments (images, etc.) of the selected notes when removing them.
 
-## Hot keys
+## Hotkeys
 
 - Remove folder/notebook [Ctrl + Shift + D]
 
